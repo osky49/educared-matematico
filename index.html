@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EducaRED Matemático PRO</title>
+<link rel="icon" type="image/png" href="IETAC - VECTOR - CORREGIDA.png">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+/* =========================
+VARIABLES
+========================= */
+
+:root{
+
+--primary:#0f172a;
+--secondary:#2563eb;
+--accent:#38bdf8;
+--light:#f8fafc;
+--card:#ffffff;
+--text:#1e293b;
+--sidebar:#020617;
+--success:#16a34a;
+--warning:#f59e0b;
+
+}
+
+.dark{
+
+--primary:#020617;
+--secondary:#3b82f6;
+--accent:#0ea5e9;
+--light:#0f172a;
+--card:#1e293b;
+--text:#f1f5f9;
+--sidebar:#000814;
+
+}
+
+/* =========================
+RESET
+========================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+transition:0.3s;
+}
+
+body{
+background:var(--light);
+color:var(--text);
+display:flex;
+min-height:100vh;
+overflow-x:hidden;
+}
+
+/* =========================
+SIDEBAR
+========================= */
+
+.sidebar{
+
+width:270px;
+background:var(--sidebar);
+padding:25px;
+position:fixed;
+height:100vh;
+overflow-y:auto;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+z-index:999;
+
+border-right:2px solid rgba(255,255,255,0.05);
+
+}
+
+/* LOGO */
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:40px;
+
+}
+
+.logo-box{
+
+width:70px;
+height:70px;
+
+background:white;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+overflow:hidden;
+
+border:3px solid var(--accent);
+
+box-shadow:0 0 20px rgba(56,189,248,0.6);
+
+}
+
+.logo-box img{
+
+width:85%;
+height:85%;
+object-fit:contain;
+
+}
+
+.logo-text h1{
+
+font-size:24px;
+color:white;
+
+}
+
+.logo-text span{
+
+color:#94a3b8;
+font-size:13px;
+
+}
+
+/* MENU */
+
+.menu{
+
+display:flex;
+flex-direction:column;
+gap:10px;
+
+}
+
+.menu button{
+
+background:none;
+border:none;
+
+color:#e2e8f0;
+
+padding:15px 18px;
+
+border-radius:15px;
+
+font-size:16px;
+
+cursor:pointer;
+
+display:flex;
+align-items:center;
+gap:15px;
+
+text-align:left;
+
+font-weight:bold;
+
+}
+
+.menu button:hover{
+
+background:rgba(255,255,255,0.08);
+
+transform:translateX(5px);
+
+color:var(--accent);
+
+}
+
+.menu button.active{
+
+background:linear-gradient(135deg,var(--secondary),var(--accent));
+
+color:white;
+
+}
+
+/* FOOTER SIDEBAR */
+
+.sidebar-footer{
+
+margin-top:30px;
+padding-top:20px;
+
+border-top:1px solid rgba(255,255,255,0.1);
+
+color:#94a3b8;
+font-size:13px;
+
+}
+
+/* =========================
+MAIN
+========================= */
+
+.main{
+
+margin-left:270px;
+width:calc(100% - 270px);
+
+}
+
+/* =========================
+TOPBAR
+========================= */
+
+.topbar{
+
+background:var(--card);
+
+padding:18px 30px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+position:sticky;
+top:0;
+
+z-index:998;
+
+box-shadow:0 2px 15px rgba(0,0,0,0.08);
+
+}
+
+.topbar-left h2{
+
+font-size:28px;
+color:var(--primary);
+
+}
+
+.topbar-left p{
+
+color:#64748b;
+margin-top:5px;
+
+}
+
+.topbar-right{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+}
+
+.topbar-btn{
+
+width:45px;
+height:45px;
+
+border:none;
+
+border-radius:50%;
+
+background:var(--light);
+
+cursor:pointer;
+
+font-size:18px;
+color:var(--primary);
+
+}
+
+.topbar-btn:hover{
+
+background:var(--secondary);
+color:white;
+
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+
+margin:30px;
+
+padding:60px;
+
+border-radius:30px;
+
+background:
+linear-gradient(rgba(15,23,42,0.88),rgba(15,23,42,0.88)),
+url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1600');
+
+background-size:cover;
+background-position:center;
+
+color:white;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.hero::before{
+
+content:"";
+
+position:absolute;
+
+width:400px;
+height:400px;
+
+background:rgba(56,189,248,0.2);
+
+border-radius:50%;
+
+top:-100px;
+right:-100px;
+
+filter:blur(30px);
+
+}
+
+.hero h1{
+
+font-size:56px;
+margin-bottom:20px;
+
+position:relative;
+z-index:1;
+
+}
+
+.hero p{
+
+max-width:850px;
+font-size:20px;
+line-height:1.8;
+
+position:relative;
+z-index:1;
+
+}
+
+/* SEARCH */
+
+.search-box{
+
+margin-top:35px;
+
+background:white;
+
+padding:15px;
+
+border-radius:20px;
+
+display:flex;
+gap:15px;
+
+max-width:900px;
+
+position:relative;
+z-index:1;
+
+}
+
+.search-box input{
+
+flex:1;
+
+padding:16px;
+
+border:none;
+
+outline:none;
+
+font-size:16px;
+
+}
+
+.search-box button{
+
+padding:16px 25px;
+
+border:none;
+
+border-radius:15px;
+
+background:linear-gradient(135deg,var(--secondary),var(--accent));
+
+color:white;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+/* =========================
+CONTAINERS
+========================= */
+
+.container{
+
+padding:0 30px 40px 30px;
+
+}
+
+/* =========================
+STATS
+========================= */
+
+.stats{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+
+margin-bottom:40px;
+
+}
+
+.stat{
+
+background:var(--card);
+
+padding:30px;
+
+border-radius:25px;
+
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.stat::before{
+
+content:"";
+
+position:absolute;
+
+width:120px;
+height:120px;
+
+background:rgba(37,99,235,0.08);
+
+border-radius:50%;
+
+top:-30px;
+right:-30px;
+
+}
+
+.stat i{
+
+font-size:42px;
+color:var(--secondary);
+
+margin-bottom:15px;
+
+}
+
+.stat h2{
+
+font-size:38px;
+margin-bottom:10px;
+
+}
+
+.stat p{
+
+color:#64748b;
+
+}
+
+/* =========================
+GRID
+========================= */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:25px;
+
+}
+
+/* =========================
+CARDS
+========================= */
+
+.card{
+
+background:var(--card);
+
+padding:28px;
+
+border-radius:25px;
+
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.card i{
+
+font-size:45px;
+
+margin-bottom:18px;
+
+color:var(--secondary);
+
+}
+
+.card h3{
+
+margin-bottom:15px;
+
+font-size:24px;
+
+}
+
+.card p{
+
+line-height:1.7;
+
+color:#64748b;
+
+}
+
+/* =========================
+SECTION TITLES
+========================= */
+
+.section-title{
+
+font-size:38px;
+
+margin-bottom:30px;
+
+color:var(--primary);
+
+}
+
+/* =========================
+REPOSITORY
+========================= */
+
+.repository{
+
+display:grid;
+
+grid-template-columns:300px 1fr;
+
+gap:25px;
+
+}
+
+.sidebar-repo{
+
+background:var(--card);
+
+padding:25px;
+
+border-radius:25px;
+
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+height:max-content;
+
+}
+
+.sidebar-repo h3{
+
+margin-bottom:20px;
+
+}
+
+.sidebar-repo ul{
+
+list-style:none;
+
+}
+
+.sidebar-repo li{
+
+padding:14px 0;
+
+border-bottom:1px solid #e2e8f0;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+.sidebar-repo li:hover{
+
+color:var(--secondary);
+
+padding-left:5px;
+
+}
+
+/* =========================
+RESOURCES
+========================= */
+
+.resource{
+
+background:var(--card);
+
+padding:25px;
+
+border-radius:25px;
+
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+}
+
+.resource img{
+
+width:100%;
+height:200px;
+
+object-fit:cover;
+
+border-radius:20px;
+
+margin-bottom:18px;
+
+}
+
+.tag{
+
+display:inline-block;
+
+background:#dbeafe;
+
+color:#2563eb;
+
+padding:7px 14px;
+
+border-radius:12px;
+
+font-size:14px;
+
+margin:5px 5px 5px 0;
+
+font-weight:bold;
+
+}
+
+.rating{
+
+margin:18px 0;
+
+font-size:20px;
+
+color:#f59e0b;
+
+}
+
+.resource button{
+
+padding:12px 16px;
+
+border:none;
+
+border-radius:12px;
+
+cursor:pointer;
+
+color:white;
+
+font-weight:bold;
+
+margin-top:10px;
+margin-right:5px;
+
+}
+
+.download{background:var(--success);}
+.favorite{background:var(--warning);}
+.comment{background:#0ea5e9;}
+
+/* =========================
+PROFILE
+========================= */
+
+.profile-box{
+
+background:var(--card);
+
+padding:35px;
+
+border-radius:25px;
+
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+}
+
+.profile{
+
+display:flex;
+align-items:center;
+gap:25px;
+
+}
+
+.avatar{
+
+width:120px;
+height:120px;
+
+border-radius:50%;
+
+overflow:hidden;
+
+border:4px solid var(--accent);
+
+box-shadow:0 0 20px rgba(56,189,248,0.5);
+
+background:white;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+.avatar img{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+}
+
+/* =========================
+FORMS
+========================= */
+
+.form-box{
+
+background:var(--card);
+
+padding:35px;
+
+border-radius:25px;
+
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+max-width:800px;
+
+margin:auto;
+
+}
+
+.form-box input,
+.form-box textarea,
+.form-box select{
+
+width:100%;
+
+padding:15px;
+
+margin:10px 0;
+
+border-radius:14px;
+
+border:1px solid #cbd5e1;
+
+background:transparent;
+
+color:var(--text);
+
+}
+
+.form-box button{
+
+width:100%;
+
+padding:15px;
+
+margin-top:15px;
+
+border:none;
+
+border-radius:14px;
+
+background:linear-gradient(135deg,var(--secondary),var(--accent));
+
+color:white;
+
+font-size:16px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+/* =========================
+NOTIFICATION
+========================= */
+
+.notifications{
+
+position:fixed;
+
+bottom:20px;
+right:20px;
+
+background:linear-gradient(135deg,var(--secondary),var(--accent));
+
+color:white;
+
+padding:18px 22px;
+
+border-radius:15px;
+
+display:none;
+
+z-index:9999;
+
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+
+margin-top:50px;
+
+background:var(--primary);
+
+color:white;
+
+padding:40px;
+
+text-align:center;
+
+}
+
+/* =========================
+UTILS
+========================= */
+
+.hidden{
+
+display:none;
+
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:1100px){
+
+.repository{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:900px){
+
+.sidebar{
+
+width:100%;
+height:auto;
+position:relative;
+
+}
+
+.main{
+
+margin-left:0;
+width:100%;
+
+}
+
+body{
+
+flex-direction:column;
+
+}
+
+.hero{
+
+padding:40px 25px;
+
+}
+
+.hero h1{
+
+font-size:40px;
+
+}
+
+.search-box{
+
+flex-direction:column;
+
+}
+
+.topbar{
+
+flex-direction:column;
+gap:15px;
+
+align-items:flex-start;
+
+}
+
+.submenu{
+
+list-style:none;
+
+padding-left:18px;
+
+margin-top:8px;
+
+overflow:hidden;
+
+max-height:500px;
+
+transition:0.4s ease;
+
+}
+}
+/* OCULTO */
+
+.hidden-submenu{
+
+max-height:0;
+overflow:hidden;
+padding-left:18px;
+
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+SIDEBAR
+========================= -->
+
+<div class="sidebar">
+
+<div>
+
+<div class="logo">
+
+<div class="logo-box">
+
+<!-- CAMBIA ESTA IMAGEN -->
+<img src="IETAC - VECTOR - CORREGIDA.png" alt="Logo">
+
+</div>
+
+<div class="logo-text">
+<h1>EducaRED</h1>
+<span>Matemático PRO</span>
+</div>
+
+</div>
+
+<div class="menu">
+
+<button class="active" onclick="showPage('home', this)">
+<i class="fa-solid fa-house"></i>
+Inicio
+</button>
+
+<button onclick="showPage('repository', this)">
+<i class="fa-solid fa-book"></i>
+Repositorio
+</button>
+
+<button onclick="showPage('upload', this)">
+<i class="fa-solid fa-upload"></i>
+Subir Recursos
+</button>
+
+<button onclick="showPage('profile', this)">
+<i class="fa-solid fa-user"></i>
+Perfil
+</button>
+
+<button onclick="showPage('login', this)">
+<i class="fa-solid fa-right-to-bracket"></i>
+Login
+</button>
+
+</div>
+
+</div>
+
+<div class="sidebar-footer">
+
+<p>© 2026 EducaRED Matemático PRO</p>
+<p>Plataforma Académica Inteligente</p>
+
+</div>
+
+</div>
+
+<!-- =========================
+MAIN
+========================= -->
+
+<div class="main">
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+<div class="topbar-left">
+
+<h2>Panel Educativo</h2>
+<p>Repositorio digital institucional</p>
+
+</div>
+
+<div class="topbar-right">
+
+<button class="topbar-btn" onclick="toggleDarkMode()">
+<i class="fa-solid fa-moon"></i>
+</button>
+
+<button class="topbar-btn">
+<i class="fa-solid fa-bell"></i>
+</button>
+
+<button class="topbar-btn">
+<i class="fa-solid fa-gear"></i>
+</button>
+
+</div>
+
+</div>
+
+<!-- HOME -->
+
+<section id="home">
+
+<div class="hero">
+
+<h1>Matemáticas del Futuro 🚀</h1>
+
+<p>
+
+Plataforma educativa moderna inspirada en Google Classroom,
+Moodle y repositorios universitarios digitales para docentes
+y estudiantes de matemáticas.
+
+</p>
+
+<div class="search-box">
+
+<input type="text"
+placeholder="Buscar recursos, juegos, talleres o guías...">
+
+<button>
+<i class="fa-solid fa-magnifying-glass"></i>
+Buscar
+</button>
+
+</div>
+
+</div>
+
+<div class="container">
+
+<h2 class="section-title">Estadísticas Generales</h2>
+
+<div class="stats">
+
+<div class="stat">
+<i class="fa-solid fa-book"></i>
+<h2 id="resourcesCount">1250</h2>
+<p>Recursos educativos</p>
+</div>
+
+<div class="stat">
+<i class="fa-solid fa-users"></i>
+<h2>980</h2>
+<p>Usuarios registrados</p>
+</div>
+
+<div class="stat">
+<i class="fa-solid fa-download"></i>
+<h2>15K</h2>
+<p>Descargas realizadas</p>
+</div>
+
+<div class="stat">
+<i class="fa-solid fa-star"></i>
+<h2>4.9</h2>
+<p>Valoración promedio</p>
+</div>
+
+</div>
+
+<h2 class="section-title">Funciones Inteligentes</h2>
+
+<div class="grid">
+
+<div class="card">
+<i class="fa-solid fa-robot"></i>
+<h3>IA Educativa</h3>
+<p>
+El sistema recomienda recursos según intereses y desempeño académico.
+</p>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-chart-line"></i>
+<h3>Seguimiento Académico</h3>
+<p>
+Visualiza estadísticas y progreso estudiantil en tiempo real.
+</p>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-gamepad"></i>
+<h3>Gamificación</h3>
+<p>
+Aprendizaje interactivo mediante juegos y retos matemáticos.
+</p>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-cloud-arrow-up"></i>
+<h3>Repositorio Cloud</h3>
+<p>
+Sube y comparte recursos digitales fácilmente.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- REPOSITORY -->
+
+<section id="repository" class="hidden">
+
+<div class="container">
+
+<h2 class="section-title">Repositorio Académico</h2>
+
+<div class="repository">
+
+<div class="sidebar-repo">
+
+<h3>Áreas Matemáticas</h3>
+
+<ul class="accordion">
+
+
+<!-- MATEMÁTICAS -->
+
+<li>
+
+<div class="accordion-btn"
+onclick="toggleAccordion('Matematicas')">
+
+<span>📏 Matemáticas</span>
+
+<i class="fa-solid fa-chevron-down"></i>
+
+</div>
+
+<ul id="Matematicas"
+class="submenu hidden-submenu">
+
+<li>6°</li>
+<li>7°</li>
+<li>8°</li>
+<li>9°</li>
+<li>10°</li>
+<li>11°</li>
+
+</ul>
+
+</li>
+
+
+
+
+<!-- ÁLGEBRA -->
+
+<li>
+
+<div class="accordion-btn"
+onclick="toggleAccordion('algebraGrades')">
+
+<span>📘 Álgebra</span>
+
+<i class="fa-solid fa-chevron-down"></i>
+
+</div>
+
+<ul id="algebraGrades"
+class="submenu hidden-submenu">
+
+<li>8°</li>
+<li>9°</li>
+<li>10°</li>
+<li>11°</li>
+
+</ul>
+
+</li>
+
+<!-- GEOMETRÍA -->
+
+<li>
+
+<div class="accordion-btn"
+onclick="toggleAccordion('geometryGrades')">
+
+<span>📐 Geometría</span>
+
+<i class="fa-solid fa-chevron-down"></i>
+
+</div>
+
+<ul id="geometryGrades"
+class="submenu hidden-submenu">
+
+<li>6°</li>
+<li>7°</li>
+<li>8°</li>
+<li>9°</li>
+
+
+</ul>
+
+</li>
+
+<!-- ESTADÍSTICA -->
+
+<li>
+
+<div class="accordion-btn"
+onclick="toggleAccordion('statsGrades')">
+
+<span>📊 Estadística</span>
+
+<i class="fa-solid fa-chevron-down"></i>
+
+</div>
+
+<ul id="statsGrades"
+class="submenu hidden-submenu">
+
+<li>6°</li>
+<li>7°</li>
+<li>8°</li>
+<li>9°</li>
+<li>10°</li>
+<li>11°</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="grid">
+
+<div class="resource">
+
+<img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=1200">
+
+<h3>Teorema de Pitágoras</h3>
+
+<span class="tag">Video</span>
+<span class="tag">8°</span>
+<span class="tag">Geometría</span>
+
+<p style="margin-top:15px;">
+Aplicaciones interactivas del teorema de Pitágoras.
+</p>
+
+<div class="rating">★★★★★</div>
+
+<button class="download"
+onclick="notify('Descarga iniciada')">
+Descargar
+</button>
+
+<button class="favorite"
+onclick="notify('Agregado a favoritos')">
+Favorito
+</button>
+
+<button class="comment"
+onclick="commentBox()">
+Comentar
+</button>
+
+</div>
+
+<div class="resource">
+
+<img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1200">
+
+<h3>Estadística Básica</h3>
+
+<span class="tag">PDF</span>
+<span class="tag">7°</span>
+<span class="tag">Estadística</span>
+
+<p style="margin-top:15px;">
+Guía interactiva con ejercicios prácticos.
+</p>
+
+<div class="rating">★★★★☆</div>
+
+<button class="download"
+onclick="notify('Descarga iniciada')">
+Descargar
+</button>
+
+<button class="favorite"
+onclick="notify('Agregado a favoritos')">
+Favorito
+</button>
+
+<button class="comment"
+onclick="commentBox()">
+Comentar
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- UPLOAD -->
+
+<section id="upload" class="hidden">
+
+<div class="container">
+
+<div class="form-box">
+
+<h2 class="section-title">Subir Recursos</h2>
+
+<input type="text" placeholder="Título del recurso">
+
+<input type="text" placeholder="Autor">
+
+<select>
+<option>Tipo de recurso</option>
+<option>Video</option>
+<option>PDF</option>
+<option>Juego</option>
+<option>Infografía</option>
+</select>
+
+<select>
+<option>Seleccione grado</option>
+<option>6°</option>
+<option>7°</option>
+<option>8°</option>
+<option>9°</option>
+<option>10°</option>
+<option>11°</option>
+</select>
+
+<input type="file">
+
+<textarea rows="5"
+placeholder="Descripción del recurso"></textarea>
+
+<button onclick="uploadResource()">
+Publicar recurso
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PROFILE -->
+
+<section id="profile" class="hidden">
+
+<div class="container">
+
+<div class="profile-box">
+
+<div class="profile">
+
+<div class="avatar">
+
+<img
+id="profileImage"
+src="ivatar.webp"
+alt="Foto de perfil">
+
+</div>
+
+<div>
+
+<h2>Óscar Monterroza</h2>
+
+<p>Docente de Matemáticas</p>
+
+<p>Administrador académico digital</p>
+
+</div>
+
+</div>
+
+<div style="margin-top:30px;" class="grid">
+
+<div class="card">
+
+<i class="fa-solid fa-book-open"></i>
+
+<h3>45 Recursos</h3>
+
+<p>Material educativo publicado.</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-heart"></i>
+
+<h3>20 Favoritos</h3>
+
+<p>Recursos guardados.</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-trophy"></i>
+
+<h3>8 Destacados</h3>
+
+<p>Recursos mejor valorados.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- LOGIN -->
+
+<section id="login" class="hidden">
+
+<div class="container">
+
+<div class="form-box">
+
+<h2 class="section-title">Acceso Institucional</h2>
+
+<input type="email"
+id="loginEmail"
+placeholder="Correo institucional">
+
+<input type="password"
+id="loginPassword"
+placeholder="Contraseña">
+
+<select id="loginRole">
+
+<option>Seleccione rol</option>
+<option>Administrador</option>
+<option>Docente</option>
+<option>Estudiante</option>
+
+</select>
+
+<button onclick="loginSystem()">
+Ingresar
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- NOTIFICATION -->
+
+<div class="notifications" id="notification"></div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<h2>EducaRED Matemático PRO</h2>
+
+<p>
+Repositorio institucional inteligente de recursos educativos.
+</p>
+
+<p style="margin-top:10px;">
+Proyecto Académico 2026
+</p>
+
+</footer>
+
+</div>
+
+<script>
+
+/* =========================
+SHOW PAGES
+========================= */
+
+function showPage(page, btn){
+
+document.querySelectorAll("section").forEach(sec=>{
+sec.classList.add("hidden");
+});
+
+document.getElementById(page).classList.remove("hidden");
+
+/* ACTIVE MENU */
+
+document.querySelectorAll(".menu button")
+.forEach(b=>b.classList.remove("active"));
+
+btn.classList.add("active");
+
+}
+
+/* =========================
+NOTIFICATIONS
+========================= */
+
+function notify(message){
+
+let box = document.getElementById("notification");
+
+box.innerText = message;
+
+box.style.display = "block";
+
+setTimeout(()=>{
+box.style.display = "none";
+},3000);
+
+}
+
+/* =========================
+COMMENT BOX
+========================= */
+
+function commentBox(){
+
+let comment = prompt("Ingrese su comentario:");
+
+if(comment){
+
+notify("Comentario enviado");
+
+}
+
+}
+
+/* =========================
+UPLOAD
+========================= */
+
+function uploadResource(){
+
+let count =
+document.getElementById("resourcesCount");
+
+count.innerText =
+parseInt(count.innerText)+1;
+
+notify("Recurso publicado correctamente");
+
+}
+
+/* =========================
+DARK MODE
+========================= */
+
+function toggleDarkMode(){
+
+document.body.classList.toggle("dark");
+
+}
+
+/* =========================
+USUARIOS DEL SISTEMA
+========================= */
+
+const users = [
+
+{
+email:"cuadradopuentess@gmail.com",
+password:"123456789",
+role:"Docente",
+name:"Santiago Cuadrado Puentes"
+},
+
+{
+email:"cpgr89@hotmail.com",
+password:"123456789",
+role:"Docente",
+name:"Claudia Gil"
+
+},
+
+{
+email:"fabiandavidarrietadiaz@gmail.com",
+password:"123456789",
+role:"Docente",
+name:"Fabian David Arrieta Diaz"
+},
+
+{
+email:"oscarmonterroza49@gmail.com",
+password:"123456789",
+role:"Docente",
+name:"Óscar Monterroza Escorcia",
+photo:"docente1.jpg"
+},
+
+{
+email:"cbritod@unicartagena.edu.co",
+password:"123456789",
+role:"Docente",
+name:"Camilo Andrés Brito Daza"
+}
+
+];
+
+/* =========================
+LOGIN SYSTEM
+========================= */
+
+function loginSystem(){
+
+let email =
+document.getElementById("loginEmail")
+.value
+.toLowerCase()
+.trim();
+
+let password =
+document.getElementById("loginPassword")
+.value
+.trim();
+
+let role =
+document.getElementById("loginRole")
+.value;
+
+let userFound = users.find(user =>
+
+user.email === email &&
+user.password === password &&
+user.role === role
+
+);
+
+if(userFound){
+
+notify("Bienvenido " + userFound.name);
+
+/* REDIRECCIONAR AL PERFIL */
+
+showPage('profile',
+document.querySelectorAll('.menu button')[3]);
+
+/* CAMBIAR DATOS DEL PERFIL */
+
+document.querySelector(".profile h2")
+.innerText = userFound.name;
+
+document.querySelector(".profile p")
+.innerText = userFound.role;
+
+/* FOTO DE PERFIL */
+
+document.getElementById("profileImage")
+.src = userFound.photo;
+
+}else{
+
+notify("Credenciales incorrectas");
+
+}
+
+}
+/* =========================
+ACCORDION ÁREAS
+========================= */
+
+function toggleAccordion(id){
+
+const submenu =
+document.getElementById(id);
+
+submenu.classList.toggle("hidden-submenu");
+
+}
+
+</script>
+
+</body>
+</html>
